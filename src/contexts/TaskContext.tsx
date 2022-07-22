@@ -13,7 +13,7 @@ import {
 } from '../reducers/tasks/actions'
 import { Task, tasksReducer } from '../reducers/tasks/reducer'
 
-const nameStorageData = '@todo-app:todo-state-1.0.0'
+const nameStorageData = '@todo-app:todo-data-1.0.0'
 
 interface CreateTaskData {
   task: string
@@ -42,23 +42,26 @@ export function TaskContextProvider({ children }: TaskContextProviderProps) {
   const [isTaskFinished, setIsTaskFinished] = useState(true)
   const [countTaskFinished, setCountTaskFinished] = useState(0)
 
-  const [taskState, dispatch] = useReducer(
-    tasksReducer,
-    {
-      tasks: [],
-      currentTaskId: null,
-    },
-    () => {
-      const storageStateAsJSON = localStorage.getItem(nameStorageData)
-      if (storageStateAsJSON) {
-        return JSON.parse(storageStateAsJSON)
-      }
-    },
-  )
+  const [taskState, dispatch] = useReducer(tasksReducer, {
+    tasks: [],
+    currentTaskId: null,
+  })
 
-  // const { tasks, currentTaskId } = taskState
-  const tasks = taskState.tasks
-  const currentTaskId = taskState.currentTaskId
+  // const [taskState, dispatch] = useReducer(
+  //   tasksReducer,
+  //   {
+  //     tasks: [],
+  //     currentTaskId: null,
+  //   },
+  //   () => {
+  //     const storageStateAsJSON = localStorage.getItem(nameStorageData)
+  //     if (storageStateAsJSON) {
+  //       return JSON.parse(storageStateAsJSON)
+  //     }
+  //   },
+  // )
+
+  const { tasks, currentTaskId } = taskState
 
   function handleToogleTaskStatus() {
     setIsTaskFinished((prevIsTaskFinished) => !prevIsTaskFinished)
