@@ -42,24 +42,19 @@ export function TaskContextProvider({ children }: TaskContextProviderProps) {
   const [isTaskFinished, setIsTaskFinished] = useState(true)
   const [countTaskFinished, setCountTaskFinished] = useState(0)
 
-  const [taskState, dispatch] = useReducer(tasksReducer, {
-    tasks: [],
-    currentTaskId: null,
-  })
-
-  // const [taskState, dispatch] = useReducer(
-  //   tasksReducer,
-  //   {
-  //     tasks: [],
-  //     currentTaskId: null,
-  //   },
-  //   () => {
-  //     const storageStateAsJSON = localStorage.getItem(nameStorageData)
-  //     if (storageStateAsJSON) {
-  //       return JSON.parse(storageStateAsJSON)
-  //     }
-  //   },
-  // )
+  const [taskState, dispatch] = useReducer(
+    tasksReducer,
+    {
+      tasks: [],
+      currentTaskId: null,
+    },
+    () => {
+      const storageStateAsJSON = localStorage.getItem(nameStorageData)
+      if (storageStateAsJSON) {
+        return JSON.parse(storageStateAsJSON)
+      }
+    },
+  )
 
   const { tasks, currentTaskId } = taskState
 
