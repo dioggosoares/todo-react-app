@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  @apply m-0 p-0 box-border;
+}
+
+body {
+  @apply bg-gray-600 text-white antialiased;
+}
+
+body,
+input,
+textarea,
+select {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+} 
+
+// .roundCheckbox {
+//   @apply relative;
+
+//   label {
+//     @apply absolute top-0 left-0 bg-gray-500 border border-secondary-300 w-[18px] h-[18px] rounded-full cursor-pointer;
+//   }
+
+//   label:after {
+//     @apply absolute top-1 left-1 opacity-0 content-[""] border-2 border-t-0 border-r-0 border-white w-2 h-[.375rem] -rotate-45;
+//   }
+
+//   input[type="checkbox"] {
+//     visibility: hidden;
+//   }
+
+//   input[type="checkbox"]:checked + label {
+//     @apply bg-primary-500 border-primary-500;
+//   }
+
+//   input[type="checkbox"]:checked + label:after {
+//     opacity: 1;
+//   }
+// }
+
+.checked::after {
+  @apply absolute top-[.3125rem] left-[.3125rem] content-[""] border-2 border-t-0 border-r-0 border-white w-2 h-[.375rem] -rotate-45;
+}
+
+.toastProgress {
+  background: #5e60ce !important;
+}
