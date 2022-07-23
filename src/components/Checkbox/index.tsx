@@ -22,17 +22,14 @@ export function Checkbox({ id, index, isChecked }: CheckboxProps) {
   }
 
   return (
-    <div id={`checkboxCustom_${index}`} className="relative flex">
-      <button
-        type="button"
-        className={
-          isChecked
-            ? 'bg-primary-500 border-primary-500 w-[1.125rem] h-[1.125rem] rounded-full checked'
-            : 'bg-gray-500 border border-secondary-300 w-[1.125rem] h-[1.125rem] rounded-full '
-        }
-        onClick={() => handleMarkCurrentTaskAsFinished(id)}
+    <div id={`rounded-checkbox_${index}`} className="roundCheckbox">
+      <input
+        type="checkbox"
+        onChange={() => handleMarkCurrentTaskAsFinished(id)}
         id={`checkbox_${index}`}
+        checked={!!isChecked}
       />
+      <label htmlFor={`checkbox_${index}`} />
     </div>
   )
 }
