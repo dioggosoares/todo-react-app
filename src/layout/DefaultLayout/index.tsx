@@ -6,9 +6,9 @@ import { Header } from '../../components/Header'
 export function DefaultLayout() {
   return (
     <>
-      <div className="flex w-full h-[12.5rem] bg-gray-700">
+      <header className="flex p-20 bg-gray-700">
         <Header />
-      </div>
+      </header>
       <Outlet />
     </>
   )
