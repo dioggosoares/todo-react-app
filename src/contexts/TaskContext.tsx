@@ -63,9 +63,15 @@ export function TaskContextProvider({ children }: TaskContextProviderProps) {
   }
 
   function handleCountTaskFinished() {
-    setCountTaskFinished((state) => {
-      return state + 1
-    })
+    if (isTaskFinished) {
+      setCountTaskFinished((state) => {
+        return state + 1
+      })
+    } else {
+      setCountTaskFinished((state) => {
+        return state - 1
+      })
+    }
   }
 
   function deleteTask(id: number) {
