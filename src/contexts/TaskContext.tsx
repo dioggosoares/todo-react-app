@@ -53,6 +53,11 @@ export function TaskContextProvider({ children }: TaskContextProviderProps) {
       if (storageStateAsJSON) {
         return JSON.parse(storageStateAsJSON)
       }
+
+      return {
+        tasks: [],
+        currentTaskId: null,
+      }
     },
   )
 
