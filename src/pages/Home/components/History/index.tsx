@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { Trash } from 'phosphor-react'
 
 import { TaskContext } from '../../../../contexts/TaskContext'
@@ -21,9 +21,7 @@ export function History() {
         <div className="flex items-center gap-2 text-primary-300">
           Concluídas
           <span className="bg-gray-400 text-xs text-gray-200 py-[.125rem] px-2 rounded-full">
-            {tasks?.length > 0
-              ? countTaskFinished + ' de ' + tasks?.length
-              : '0 de 0'}
+            {countTaskFinished + ' de ' + tasks?.length}
           </span>
         </div>
       </div>

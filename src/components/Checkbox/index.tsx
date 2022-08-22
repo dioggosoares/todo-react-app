@@ -8,28 +8,22 @@ interface CheckboxProps {
   isChecked: boolean
 }
 
-export function Checkbox({ id, index, isChecked }: CheckboxProps) {
-  const {
-    handleCountTaskFinished,
-    handleToogleTaskStatus,
-    markCurrentTaskAsFinished,
-  } = useContext(TaskContext)
+export function Checkbox({ id, isChecked }: CheckboxProps) {
+  const { markCurrentTaskAsFinished } = useContext(TaskContext)
 
   function handleMarkCurrentTaskAsFinished(idTask: string) {
     markCurrentTaskAsFinished(idTask)
-    handleToogleTaskStatus()
-    handleCountTaskFinished()
   }
 
   return (
-    <div id={`rounded-checkbox_${index}`} className="roundCheckbox">
+    <div id={`rounded-checkbox_${id}`} className="roundCheckbox">
       <input
         type="checkbox"
         onChange={() => handleMarkCurrentTaskAsFinished(id)}
-        id={`checkbox_${index}`}
+        id={`checkbox_${id}`}
         checked={!!isChecked}
       />
-      <label htmlFor={`checkbox_${index}`} />
+      <label htmlFor={`checkbox_${id}`} />
     </div>
   )
 }

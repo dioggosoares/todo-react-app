@@ -28,7 +28,7 @@ interface TaskContextType {
   handleToogleTaskStatus: () => void
   deleteTask: (id: number) => void
   markCurrentTaskAsFinished: (idTask: string) => void
-  handleCountTaskFinished: () => void
+  handleCheckTodoFinished: () => void
 }
 
 interface TaskContextProviderProps {
@@ -67,16 +67,13 @@ export function TaskContextProvider({ children }: TaskContextProviderProps) {
     setIsTaskFinished((prevIsTaskFinished) => !prevIsTaskFinished)
   }
 
-  function handleCountTaskFinished() {
-    if (isTaskFinished) {
-      setCountTaskFinished((state) => {
-        return state + 1
-      })
-    } else {
-      setCountTaskFinished((state) => {
-        return state - 1
-      })
-    }
+  function handleCheckTodoFinished() {
+    let filterTask = tasks
+    filterTask = filterTask.filter((e) => {
+      return e.finished === true
+    })
+
+    setCountTaskFinished(filterTask.length)
   }
 
   function deleteTask(id: number) {
@@ -97,11 +94,14 @@ export function TaskContextProvider({ children }: TaskContextProviderProps) {
 
   function markCurrentTaskAsFinished(idTask: string) {
     dispatch(updateCurrentTaskStatusAction(idTask, isTaskFinished))
+    handleToogleTaskStatus()
+    handleCheckTodoFinished()
   }
 
   useEffect(() => {
     const stateJSON = JSON.stringify(taskState)
     localStorage.setItem(nameStorageData, stateJSON)
+    handleCheckTodoFinished()
   }, [taskState])
 
   return (
@@ -114,7 +114,7 @@ export function TaskContextProvider({ children }: TaskContextProviderProps) {
         handleToogleTaskStatus,
         deleteTask,
         markCurrentTaskAsFinished,
-        handleCountTaskFinished,
+        handleCheckTodoFinished,
         countTaskFinished,
       }}
     >
