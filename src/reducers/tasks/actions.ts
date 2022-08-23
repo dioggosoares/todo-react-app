@@ -15,7 +15,7 @@ export function addNewTaskAction(newTask: Task) {
   }
 }
 
-export function deleteCurrentTaskAction(id: Number) {
+export function deleteCurrentTaskAction(id: number) {
   return {
     type: ActionTypes.DELETE_CURRENT_TASK,
     payload: {

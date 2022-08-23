@@ -28,7 +28,6 @@ interface TaskContextType {
   handleToogleTaskStatus: () => void
   deleteTask: (id: number) => void
   markCurrentTaskAsFinished: (idTask: string) => void
-  handleCheckTodoFinished: () => void
 }
 
 interface TaskContextProviderProps {
@@ -40,7 +39,6 @@ export const TaskContext = createContext({} as TaskContextType)
 
 export function TaskContextProvider({ children }: TaskContextProviderProps) {
   const [isTaskFinished, setIsTaskFinished] = useState(true)
-  const [countTaskFinished, setCountTaskFinished] = useState(0)
 
   const [taskState, dispatch] = useReducer(
     tasksReducer,
@@ -63,17 +61,12 @@ export function TaskContextProvider({ children }: TaskContextProviderProps) {
 
   const { tasks, currentTaskId } = taskState
 
+  const countTaskFinished = taskState.tasks.filter(
+    (task) => task.finished,
+  ).length
+
   function handleToogleTaskStatus() {
     setIsTaskFinished((prevIsTaskFinished) => !prevIsTaskFinished)
-  }
-
-  function handleCheckTodoFinished() {
-    let filterTask = tasks
-    filterTask = filterTask.filter((e) => {
-      return e.finished === true
-    })
-
-    setCountTaskFinished(filterTask.length)
   }
 
   function deleteTask(id: number) {
@@ -95,13 +88,11 @@ export function TaskContextProvider({ children }: TaskContextProviderProps) {
   function markCurrentTaskAsFinished(idTask: string) {
     dispatch(updateCurrentTaskStatusAction(idTask, isTaskFinished))
     handleToogleTaskStatus()
-    handleCheckTodoFinished()
   }
 
   useEffect(() => {
     const stateJSON = JSON.stringify(taskState)
     localStorage.setItem(nameStorageData, stateJSON)
-    handleCheckTodoFinished()
   }, [taskState])
 
   return (
@@ -114,7 +105,6 @@ export function TaskContextProvider({ children }: TaskContextProviderProps) {
         handleToogleTaskStatus,
         deleteTask,
         markCurrentTaskAsFinished,
-        handleCheckTodoFinished,
         countTaskFinished,
       }}
     >
