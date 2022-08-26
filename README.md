@@ -5,7 +5,7 @@
 
 ## 📄 Descrição
 
-Projeto desenvolvido com intuito de criar uma aplicação criação de lista de tarefas, feito com ReactJS, ViteJs, Localstorage (armazenar a lista de tarefas), TailwindCSS e SASS
+Projeto desenvolvido com intuito de criar uma aplicação de criação de lista de tarefas, feito com ReactJS, ViteJs, Localstorage (armazenar a lista de tarefas), TailwindCSS e SASS
 
 ## 🛠 Technologies
 
